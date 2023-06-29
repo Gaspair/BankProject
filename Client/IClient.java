@@ -1,4 +1,4 @@
-package Person;
+package Client;
 
 public interface IClient {
 }

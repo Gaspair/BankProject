@@ -1,23 +1,32 @@
 import Bank.Bank;
-import Person.Client;
+import Client.Client;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Client firstClient = new Client("Andrei",123,38.5,128.5,286.29);
-        Client secondClient = new Client("Dragos",234,381.5,12.5,86.12);
-        Client thirdClient = new Client("Mihai",345,387.15,1828.5,286.58);
 
-        Dictionary<Integer, Client> clientsList = new Hashtable<>();
-        clientsList.put(firstClient.getClientID(),firstClient);
-        clientsList.put(secondClient.getClientID(),secondClient);
-        clientsList.put(thirdClient.getClientID(),thirdClient);
-        Bank lloydsBank = new Bank("LloydsBank",987, (Dictionary<Integer, Client>) clientsList);
+        Client client1 = new Client("Andrew", 100);
+        Client client2 = new Client("Dragos", 100);
+        Client client3 = new Client("Mathew", 12.81);
 
 
-        System.out.println(lloydsBank.getClientsList());
+        Bank bank1 = new Bank("LLoydsBank", 183.12);
+        Bank bank2 = new Bank("RaifaissenBank", 13.12);
+        Bank bank3 = new Bank("UnionBank", 1163.82);
+
+        bank1.createList(client1);
+        bank1.createList(client2);
+
+        List<Client> clients = bank1.getClientList();
+        List<String> clientNames = bank1.getClientNames();
+
+
+
+        System.out.println(clientNames);
+
+
+        System.out.println(bank1.getClientList());
 
     }
 }

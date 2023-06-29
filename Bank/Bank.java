@@ -1,81 +1,61 @@
 package Bank;
 
-import Person.Client;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+
+import Client.Client;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Bank implements IBank {
-    String name;
-    int bankID;
-    double euroSold;
-    double dollarSold;
-    double ronSold;
 
-    Dictionary<Integer, Client> clientsList = new Hashtable<>();
+    UUID bankCode;
+    String bankName;
+    double funds;
+    private List<Client> clientList ;
 
+    public Bank(String bankName, double funds) {
+        this.bankCode = UUID.randomUUID();
+        setBankName(bankName);
+        clientList = new ArrayList<>();
 
-    @Override
-    public void transferMoneyBank() {
-
-    }
-
-    @Override
-    public void transferMoneyPerson() {
 
     }
 
-    public Bank(String name, int bankID, Dictionary<Integer, Client> clientsList) {
-        this.name = name;
-        this.bankID = bankID;
-        this.clientsList = (Dictionary<Integer, Client>) clientsList;
+    public UUID getBankCode() {
+        return bankCode;
     }
 
-    public String getName() {
-        return name;
+    public String getBankName() {
+        return bankName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
-    public int getBankID() {
-        return bankID;
+    public double getFunds() {
+        return funds;
     }
 
-    public void setBankID(int bankID) {
-        this.bankID = bankID;
+    public void setFunds(double funds) {
+        this.funds = funds;
     }
 
-    public double getEuroSold() {
-        return euroSold;
+    public List<Client> getClientList() {
+        List<Client> copyList = new ArrayList<>(clientList);
+        return copyList;
+    }
+    public List<String> getClientNames() {
+        List<String> clientNames = new ArrayList<>();
+        for (Client client : clientList) {
+            clientNames.add(client.getClientName());
+        }
+        return clientNames;
     }
 
-    public void setEuroSold(double euroSold) {
-        this.euroSold = euroSold;
-    }
-
-    public double getDollarSold() {
-        return dollarSold;
-    }
-
-    public void setDollarSold(double dollarSold) {
-        this.dollarSold = dollarSold;
-    }
-
-    public double getRonSold() {
-        return ronSold;
-    }
-
-    public void setRonSold(double ronSold) {
-        this.ronSold = ronSold;
-    }
-
-    public Dictionary<Integer, Client> getClientsList() {
-        return clientsList;
-    }
-
-    public void setClientsList(Dictionary<Integer, Client> clientsList) {
-        this.clientsList = clientsList;
+    public void createList(Client client){
+        clientList.add(client);
     }
 }
