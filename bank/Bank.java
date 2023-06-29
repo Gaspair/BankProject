@@ -1,8 +1,9 @@
-package Bank;
+package bank;
 
 
 
-import Client.Client;
+import account.Account;
+import client.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,15 @@ public class Bank implements IBank {
     UUID bankCode;
     String bankName;
     double funds;
-    private List<Client> clientList ;
+
+    private final Account account;
+
+
 
     public Bank(String bankName, double funds) {
         this.bankCode = UUID.randomUUID();
         setBankName(bankName);
-        clientList = new ArrayList<>();
-
-
+        this.account = new Account(funds,"Bank Account");
     }
 
     public UUID getBankCode() {
@@ -41,21 +43,5 @@ public class Bank implements IBank {
 
     public void setFunds(double funds) {
         this.funds = funds;
-    }
-
-    public List<Client> getClientList() {
-        List<Client> copyList = new ArrayList<>(clientList);
-        return copyList;
-    }
-    public List<String> getClientNames() {
-        List<String> clientNames = new ArrayList<>();
-        for (Client client : clientList) {
-            clientNames.add(client.getClientName());
-        }
-        return clientNames;
-    }
-
-    public void createList(Client client){
-        clientList.add(client);
     }
 }
