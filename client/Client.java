@@ -2,6 +2,7 @@ package client;
 
 
 import account.Account;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -32,7 +33,7 @@ public class Client implements IClient {
         System.out.println("You have " + getClientAccount().getFunds() + " left in your bank account");
     }
 
-    public void getBankCode(UUID bankCode){
+    public void setBankCode(UUID bankCode){
         this.bankCode = bankCode;
     }
 
@@ -48,12 +49,11 @@ public class Client implements IClient {
         this.firstName = firstName;
     }
 
-    public void transferFunds(Client receiverClient,double amount) {
-        if(getBankCode() == receiverClient.getBankCode()){
-            getClientAccount().transferFunds(amount,this.account );
-        }else{
-
+    public void transferFunds(double amount,@NotNull Client receiverClient) {
+        if(getBankCode() == receiverClient.getBankCode() && this.getClientAccount().getAccountId() != receiverClient.getClientAccount().getAccountId() ){
+            this.getClientAccount().transferFunds(amount,receiverClient.getClientAccount() );
         }
+        System.out.println(account.getFunds() + " **********"+receiverClient.getClientAccount().getFunds());
 
     }
 

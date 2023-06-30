@@ -31,7 +31,7 @@ public class Account {
     }
 
     public void withdrawFunds(double amount) {
-        if (getFunds() <= amount) {
+        if (getFunds() < amount) {
             System.out.println("Insufficient funds!");
         } else {
             setFunds(getFunds() - amount);
@@ -40,9 +40,13 @@ public class Account {
     }
 
     public void transferFunds(double amount, @org.jetbrains.annotations.NotNull Account receiver) {
-        this.setFunds(getFunds() - amount);
-        receiver.setFunds(receiver.getFunds() + amount);
-        System.out.println("The amount of " + amount + " was transferred from account:" + getAccountId() + ", to account:" + receiver.getAccountId() + ".Remaining funds of: " + getFunds() + ".");
+        if (getFunds() < amount) {
+            System.out.println("Insufficient funds!");
+        }else {
+            this.setFunds(getFunds() - amount);
+            receiver.setFunds(receiver.getFunds() + amount);
+            System.out.println("The amount of " + amount + " was transferred from account:" + getAccountId() + ", to account:" + receiver.getAccountId() + ".Remaining funds of: " + getFunds() + ".");
+        }
     }
 
 

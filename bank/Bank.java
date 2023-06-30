@@ -33,7 +33,11 @@ public class Bank implements IBank {
     public void setAccountsList(Client client) {
 
         accountsList.add(client.getClientAccount());
-        client.getBankCode(this.bankCode);
+        client.setBankCode(this.bankCode);
+    }
+
+    public void getBankById(UUID bankCode){
+
     }
 
     public Account getBankAccount() {
