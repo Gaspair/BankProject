@@ -10,7 +10,7 @@ public class Account {
 
 
     public Account(double funds, String accountType) {
-        this.accountId = UUID.randomUUID();
+        accountId = UUID.randomUUID();
         setFunds(funds);
         setAccountType(accountType);
 
@@ -24,21 +24,25 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public String depositFunds(double amount) {
+    public void depositFunds(double amount) {
         setFunds(amount + getFunds());
 
-        return "The amount of " + amount + " was deposited to account:" + getAccountId() + ".New sold is: " + getFunds()+ ".";
+        System.out.println("The amount of " + amount + " was deposited to account:" + getAccountId() + ".New sold is: " + getFunds() + ".");
     }
 
-    public String withdrawFunds(double amount) {
-        setFunds(getFunds() - amount);
-        return "The amount of " + amount + " was deposited to account:" + getAccountId() + ".New sold is: " + getFunds()+ ".";
+    public void withdrawFunds(double amount) {
+        if (getFunds() <= amount) {
+            System.out.println("Insufficient funds!");
+        } else {
+            setFunds(getFunds() - amount);
+            System.out.println("The amount of " + amount + " was deposited to account:" + getAccountId() + ".New sold is: " + getFunds() + ".");
+        }
     }
 
-    public String transferFunds(double amount, Account receiver) {
+    public void transferFunds(double amount, @org.jetbrains.annotations.NotNull Account receiver) {
         this.setFunds(getFunds() - amount);
         receiver.setFunds(receiver.getFunds() + amount);
-        return "The amount of " + amount + " was transferred from account:" + getAccountId() + ", to account:"+receiver.getAccountId()+ ".Remaining funds of: " + getFunds()+ ".";
+        System.out.println("The amount of " + amount + " was transferred from account:" + getAccountId() + ", to account:" + receiver.getAccountId() + ".Remaining funds of: " + getFunds() + ".");
     }
 
 

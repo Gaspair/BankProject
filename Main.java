@@ -1,23 +1,26 @@
+import account.Account;
 import bank.Bank;
 import client.Client;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        Bank bank1 = new Bank("LLoydsBank");
+        Bank bank2 = new Bank("RaifaissenBank");
+        Bank bank3 = new Bank("UnionBank");
 
-        Client client1 = new Client("Andrew", 100,"personal account");
-        Client client2 = new Client("Andrew", 100,"personal account");
+        Client client1 = new Client("Andrew", 100);
+        Client client2 = new Client("Dragos", 152);
+        Client client3 = new Client("Mathew", 112);
 
-        System.out.println(client1.getClientAccount().transferFunds(100,client2.getClientAccount()));
-
-
-
-        System.out.println(client1.getClientAccount().depositFunds(100));
-        System.out.println(client2.getClientAccount().getFunds());
+        bank1.setAccountsList(client1);
+        bank1.setAccountsList(client2);
 
 
-        Bank bank1 = new Bank("LLoydsBank", 183.12);
-        Bank bank2 = new Bank("RaifaissenBank", 13.12);
-        Bank bank3 = new Bank("UnionBank", 1163.82);
+        System.out.println(bank1.getBankCode());
+        System.out.println(client1.getBankCode());
+
 
 
 

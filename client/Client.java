@@ -10,34 +10,51 @@ public class Client implements IClient {
     private final Account account;
 
     private UUID clientId;
-    private String clientName;
+    private String firstName;
+    private UUID bankCode;
 
 
-    public Client(String clientName,double funds, String accountType) {
+    public Client(String firstName,double funds) {
         this.clientId = UUID.randomUUID();
-        setClientName(clientName);
-        this.account = new Account(funds,accountType);
+        setClientName(firstName);
+        this.account = new Account(funds,"Client Account");
     }
 
     public Account getClientAccount() {
         return account;
     }
-
-    public void setClientId(UUID clientId) {
-        this.clientId = clientId;
-    }
-
-
-    public UUID getClientId() {
+    public UUID  getClientId() {
         return clientId;
     }
 
-    public String getClientName() {
-        return clientName;
+    public void checkFunds(){
+
+        System.out.println("You have " + getClientAccount().getFunds() + " left in your bank account");
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void getBankCode(UUID bankCode){
+        this.bankCode = bankCode;
+    }
+
+    public UUID getBankCode(){
+        return bankCode;
+    }
+
+    public String getClientName() {
+        return firstName;
+    }
+
+    public void setClientName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void transferFunds(Client receiverClient,double amount) {
+        if(getBankCode() == receiverClient.getBankCode()){
+            getClientAccount().transferFunds(amount,this.account );
+        }else{
+
+        }
+
     }
 
 

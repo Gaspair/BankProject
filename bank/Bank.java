@@ -1,7 +1,6 @@
 package bank;
 
 
-
 import account.Account;
 import client.Client;
 
@@ -16,13 +15,29 @@ public class Bank implements IBank {
     double funds;
 
     private final Account account;
+    List<Account> accountsList;
 
 
-
-    public Bank(String bankName, double funds) {
+    public Bank(String bankName) {
         this.bankCode = UUID.randomUUID();
         setBankName(bankName);
-        this.account = new Account(funds,"Bank Account");
+        this.account = new Account(funds, "Bank Account");
+        accountsList = new ArrayList<>();
+        updateBankFunds();
+    }
+
+    public List<Account> getAccountsList() {
+        return accountsList;
+    }
+
+    public void setAccountsList(Client client) {
+
+        accountsList.add(client.getClientAccount());
+        client.getBankCode(this.bankCode);
+    }
+
+    public Account getBankAccount() {
+        return account;
     }
 
     public UUID getBankCode() {
@@ -43,5 +58,14 @@ public class Bank implements IBank {
 
     public void setFunds(double funds) {
         this.funds = funds;
+    }
+
+
+    public void updateBankFunds() {
+        double totalFunds = 0.0;
+        for (Account account : accountsList) {
+            totalFunds += account.getFunds();
+        }
+        setFunds(totalFunds);
     }
 }
