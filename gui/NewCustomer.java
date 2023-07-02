@@ -1,25 +1,41 @@
 package gui;
 
-import client.Client;
+import controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
 public class NewCustomer extends JFrame implements ActionListener {
     JLabel title = new JLabel("Let's get you started!");
     JLabel name = new JLabel("Name ");
     JLabel password = new JLabel("Password ");
     JLabel funds = new JLabel("<html>First <br> deposit<br>amount</html>");
+    JLabel bank = new JLabel("Bank");
     JTextField nameTF;
     JTextField passwordTF;
     JTextField fundsTF;
     JButton submitButton;
 
+
+    JComboBox comboBoxBank;
+
+
     NewCustomer() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
+
+
+        comboBoxBank = new JComboBox<>(Controller.getBanksList());
+        comboBoxBank.addActionListener(this);
+        comboBoxBank.setBounds(245, 400, 180, 30);
+
+        bank.setBounds(175, 365, 150, 100);
+        bank.setFont(new Font(null, Font.PLAIN, 15));
+
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(250, 450, 80, 30);
@@ -47,7 +63,8 @@ public class NewCustomer extends JFrame implements ActionListener {
         fundsTF = new JTextField();
         fundsTF.setBounds(245, 335, 150, 20);
 
-
+        this.add(bank);
+        this.add(comboBoxBank);
         this.add(submitButton);
         this.add(nameTF);
         this.add(passwordTF);
@@ -64,17 +81,15 @@ public class NewCustomer extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-            if (e.getSource() == submitButton) {
-                new FormValidation().formValidation(nameTF.getText(),fundsTF.getText());
+        if (e.getSource() == submitButton) {
+            new FormValidation().formValidationRegister(nameTF.getText(), fundsTF.getText(), comboBoxBank.getSelectedIndex());
 
-                if(FormValidation.isValid){
-                    this.dispose();
-                    LoginPage loginPage = new LoginPage();
-                }
+            if (FormValidation.isValidRegister) {
+                this.dispose();
+                LoginPage loginPage = new LoginPage();
 
             }
-
-
+        }
 
 
     }

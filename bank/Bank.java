@@ -72,4 +72,6 @@ public class Bank implements IBank {
         }
         setFunds(totalFunds);
     }
+
+
 }

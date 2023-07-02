@@ -55,5 +55,14 @@ public class LoginPage extends JFrame  implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if (e.getSource() == loginButton) {
+            new FormValidation().formValidationLogin(nameTF.getText(), password.getText());
+
+            if (FormValidation.isValidLogin) {
+                this.dispose();
+                 new LandingPage();
+
+            }
+        }
     }
 }
