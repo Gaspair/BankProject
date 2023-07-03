@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class Client implements IClient {
 
-    private final Account account;
+    private Account account;
 
     private UUID clientId;
     private String firstName;
@@ -29,7 +29,6 @@ public class Client implements IClient {
     }
 
     public void checkFunds(){
-
         System.out.println("You have " + getClientAccount().getFunds() + " left in your bank account");
     }
 
@@ -53,7 +52,7 @@ public class Client implements IClient {
         if(getBankCode() == receiverClient.getBankCode() && this.getClientAccount().getAccountId() != receiverClient.getClientAccount().getAccountId() ){
             this.getClientAccount().transferFunds(amount,receiverClient.getClientAccount() );
         }
-        System.out.println(account.getFunds() + " **********"+receiverClient.getClientAccount().getFunds());
+        System.out.println(account.getFunds() + " ********** "+receiverClient.getClientAccount().getFunds());
 
     }
 

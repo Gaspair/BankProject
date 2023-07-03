@@ -14,8 +14,10 @@ public class Bank implements IBank {
     String bankName;
     double funds;
 
-    private final Account account;
+    private Account account;
     List<Account> accountsList;
+
+    public Bank(){}
 
 
     public Bank(String bankName) {
@@ -36,7 +38,7 @@ public class Bank implements IBank {
         client.setBankCode(this.bankCode);
     }
 
-    public void getBankById(UUID bankCode){
+    public void getBankById(UUID bankCode) {
 
     }
 

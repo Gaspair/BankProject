@@ -2,12 +2,10 @@ package account;
 
 import java.util.UUID;
 
-public class Account {
+public class Account implements IAccount {
     private UUID accountId;
-
     private double funds;
     private String accountType;
-
 
     public Account(double funds, String accountType) {
         accountId = UUID.randomUUID();
@@ -42,13 +40,12 @@ public class Account {
     public void transferFunds(double amount, @org.jetbrains.annotations.NotNull Account receiver) {
         if (getFunds() < amount) {
             System.out.println("Insufficient funds!");
-        }else {
+        } else {
             this.setFunds(getFunds() - amount);
             receiver.setFunds(receiver.getFunds() + amount);
             System.out.println("The amount of " + amount + " was transferred from account:" + getAccountId() + ", to account:" + receiver.getAccountId() + ".Remaining funds of: " + getFunds() + ".");
         }
     }
-
 
     public UUID getAccountId() {
         return accountId;
@@ -62,3 +59,4 @@ public class Account {
         this.funds = funds;
     }
 }
+
