@@ -5,7 +5,6 @@ import account.ClientAccount;
 import bank.BankRefactored;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ClientRefactored {
@@ -13,28 +12,29 @@ public class ClientRefactored {
     private String lastName;
     private String email;
 
-    private ArrayList<ClientAccount> clientAccountList;
+    private ArrayList<ClientAccount> clientAccountList = new ArrayList<ClientAccount>();
 
     public ClientRefactored(String firstName, String lastName, double funds, String email, BankRefactored bankRefactored) {
         setClientName(firstName, lastName);
-       createNewAccount(funds,bankRefactored);
+        createNewAccount(funds, bankRefactored);
         this.email = email;
 
     }
 
-    public void createNewAccount(double funds, BankRefactored bankRefactored){
-        clientAccountList = new ArrayList<ClientAccount>();
-        clientAccountList.add(new ClientAccount(funds,bankRefactored.getBankCode()));
+    public void createNewAccount(double funds, BankRefactored bankRefactored) {
+        clientAccountList.add(new ClientAccount(funds, bankRefactored.getBankCode()));
+        bankRefactored.addToClientList(this);
 
     }
 
-    public List<ClientAccount> getClientAccountList() {
+    public ArrayList<ClientAccount> getClientAccountList() {
         return clientAccountList;
     }
 
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
@@ -46,6 +46,11 @@ public class ClientRefactored {
     public void setClientName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Client Accounts: " + clientAccountList.toString();
     }
 
 //    public ClientAccount getAccount() {
