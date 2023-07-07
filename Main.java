@@ -1,14 +1,7 @@
-
-import account.ClientAccount;
-
-
 import bank.BankRefactored;
 import bank.BankStorage;
 import client.ClientRefactored;
 import gui.MyFrame;
-
-
-import java.util.List;
 
 public class Main {
 
@@ -27,8 +20,7 @@ public class Main {
         new MyFrame();
 
 
-
-        System.out.println( BankStorage.getBankList());
+        System.out.println(BankStorage.getBankList());
     }
 
 }

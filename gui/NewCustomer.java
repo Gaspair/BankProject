@@ -1,15 +1,11 @@
 package gui;
 
-//import controller.Controller;
-
-import bank.BankStorage;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+import bank.BankStorage;
 
 public class NewCustomer extends JFrame implements ActionListener {
     JLabel title = new JLabel("Let's get you started!");
@@ -17,6 +13,8 @@ public class NewCustomer extends JFrame implements ActionListener {
     JLabel password = new JLabel("Password ");
     JLabel funds = new JLabel("<html>First <br> deposit<br>amount</html>");
     JLabel bank = new JLabel("Bank");
+    JLabel email = new JLabel("Email");
+    JTextField emailTF;
     JTextField nameTF;
     JTextField passwordTF;
     JTextField fundsTF;
@@ -51,11 +49,17 @@ public class NewCustomer extends JFrame implements ActionListener {
         title.setFont(new Font(null, Font.PLAIN, 50));
 
 
-        name.setBounds(175, 200, 100, 50);
+        name.setBounds(175, 180, 100, 50);
         name.setFont(new Font(null, Font.PLAIN, 15));
 
         nameTF = new JTextField();
-        nameTF.setBounds(245, 215, 150, 20);
+        nameTF.setBounds(245, 195, 150, 20);
+
+        email.setBounds(175, 220, 100, 50);
+        email.setFont(new Font(null, Font.PLAIN, 15));
+
+        emailTF = new JTextField();
+        emailTF.setBounds(245, 225, 150, 20);
 
         password.setBounds(175, 250, 100, 50);
         password.setFont(new Font(null, Font.PLAIN, 15));
@@ -69,6 +73,8 @@ public class NewCustomer extends JFrame implements ActionListener {
         fundsTF = new JTextField();
         fundsTF.setBounds(245, 335, 150, 20);
 
+        this.add(emailTF);
+        this.add(email);
         this.add(bank);
         this.add(comboBoxBank);
         this.add(submitButton);
