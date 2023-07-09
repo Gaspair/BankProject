@@ -10,7 +10,7 @@ public class BankAccount extends Account {
     }
 
 
-    public void transferFunds(double amount, @org.jetbrains.annotations.NotNull Account receiver) {
+    public void transferFunds(double amount,  Account receiver) {
 
 
     }

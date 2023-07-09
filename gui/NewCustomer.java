@@ -5,17 +5,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import bank.BankStorage;
 
 public class NewCustomer extends JFrame implements ActionListener {
     JLabel title = new JLabel("Let's get you started!");
-    JLabel name = new JLabel("Name ");
+    JLabel firstName = new JLabel("First name ");
+    JLabel lastName = new JLabel("Last name ");
     JLabel password = new JLabel("Password ");
     JLabel funds = new JLabel("<html>First <br> deposit<br>amount</html>");
     JLabel bank = new JLabel("Bank");
     JLabel email = new JLabel("Email");
     JTextField emailTF;
-    JTextField nameTF;
+    JTextField firstNameTF;
+    JTextField lastNameTF;
     JTextField passwordTF;
     JTextField fundsTF;
     JButton submitButton;
@@ -28,18 +31,12 @@ public class NewCustomer extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
+
+
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
         for (String element : BankStorage.getBankList()) {
             model.addElement(element);
         }
-
-        comboBoxBank = new JComboBox<String>((model));
-        comboBoxBank.addActionListener(this);
-        comboBoxBank.setBounds(245, 400, 180, 30);
-
-        bank.setBounds(175, 365, 150, 100);
-        bank.setFont(new Font(null, Font.PLAIN, 15));
-
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(250, 450, 80, 30);
@@ -49,39 +46,63 @@ public class NewCustomer extends JFrame implements ActionListener {
         title.setFont(new Font(null, Font.PLAIN, 50));
 
 
-        name.setBounds(175, 180, 100, 50);
-        name.setFont(new Font(null, Font.PLAIN, 15));
+        firstName.setBounds(175, 180, 100, 50);
+        firstName.setFont(new Font(null, Font.PLAIN, 15));
 
-        nameTF = new JTextField();
-        nameTF.setBounds(245, 195, 150, 20);
+        lastName.setBounds(175, 210, 100, 50);
+        lastName.setFont(new Font(null, Font.PLAIN, 15));
 
-        email.setBounds(175, 220, 100, 50);
+        email.setBounds(175, 240, 100, 50);
         email.setFont(new Font(null, Font.PLAIN, 15));
 
-        emailTF = new JTextField();
-        emailTF.setBounds(245, 225, 150, 20);
-
-        password.setBounds(175, 250, 100, 50);
+        password.setBounds(175, 270, 100, 50);
         password.setFont(new Font(null, Font.PLAIN, 15));
 
-        passwordTF = new JTextField();
-        passwordTF.setBounds(245, 265, 150, 20);
+//        dateOfBirth.setBounds(175, 300, 100, 50);
+//        dateOfBirth.setFont(new Font(null, Font.PLAIN, 15));
 
-        funds.setBounds(175, 300, 150, 100);
+        funds.setBounds(175, 330, 150, 100);
         funds.setFont(new Font(null, Font.PLAIN, 15));
 
+        bank.setBounds(175, 365, 150, 100);
+        bank.setFont(new Font(null, Font.PLAIN, 15));
+
+
+        firstNameTF = new JTextField();
+        firstNameTF.setBounds(250, 195, 150, 20);
+
+
+        lastNameTF = new JTextField();
+        lastNameTF.setBounds(250, 225, 150, 20);
+
+
+        emailTF = new JTextField();
+        emailTF.setBounds(250, 255, 150, 20);
+
+
+        passwordTF = new JTextField();
+        passwordTF.setBounds(250, 285, 150, 20);
+
+
         fundsTF = new JTextField();
-        fundsTF.setBounds(245, 335, 150, 20);
+        fundsTF.setBounds(250, 315, 150, 20);
+
+        comboBoxBank = new JComboBox<String>((model));
+        comboBoxBank.addActionListener(this);
+        comboBoxBank.setBounds(245, 400, 180, 30);
+
 
         this.add(emailTF);
         this.add(email);
         this.add(bank);
         this.add(comboBoxBank);
         this.add(submitButton);
-        this.add(nameTF);
+        this.add(lastName);
+        this.add(firstName);
+        this.add(lastNameTF);
         this.add(passwordTF);
         this.add(fundsTF);
-        this.add(name);
+        this.add(firstNameTF);
         this.add(password);
         this.add(funds);
         this.add(title);
@@ -89,6 +110,7 @@ public class NewCustomer extends JFrame implements ActionListener {
         this.setSize(750, 750);
         this.setVisible(true);
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
