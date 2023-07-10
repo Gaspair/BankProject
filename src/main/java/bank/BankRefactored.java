@@ -1,7 +1,6 @@
 package bank;
 
 import account.BankAccount;
-import account.ClientAccount;
 import client.ClientRefactored;
 
 

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import bank.BankStorage;
 
+
 public class NewCustomer extends JFrame implements ActionListener {
     JLabel title = new JLabel("Let's get you started!");
     JLabel firstName = new JLabel("First name ");
@@ -61,6 +62,7 @@ public class NewCustomer extends JFrame implements ActionListener {
 //        dateOfBirth.setBounds(175, 300, 100, 50);
 //        dateOfBirth.setFont(new Font(null, Font.PLAIN, 15));
 
+
         funds.setBounds(175, 330, 150, 100);
         funds.setFont(new Font(null, Font.PLAIN, 15));
 
@@ -82,6 +84,9 @@ public class NewCustomer extends JFrame implements ActionListener {
 
         passwordTF = new JTextField();
         passwordTF.setBounds(250, 285, 150, 20);
+
+
+
 
 
         fundsTF = new JTextField();
@@ -115,15 +120,15 @@ public class NewCustomer extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-//        if (e.getSource() == submitButton) {
-//            new FormValidation().formValidationRegister(nameTF.getText(), fundsTF.getText(), comboBoxBank.getSelectedIndex());
-//
-//            if (FormValidation.isValidRegister) {
-//                this.dispose();
-//                LoginPage loginPage = new LoginPage();
-//
-//            }
-//        }
+        if (e.getSource() == submitButton) {
+            new FormValidation().formValidationRegister(firstNameTF.getText(), fundsTF.getText(), comboBoxBank.getSelectedIndex());
+
+            if (FormValidation.isValidRegister) {
+                this.dispose();
+                LoginPage loginPage = new LoginPage();
+
+            }
+        }
 
 
     }

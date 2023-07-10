@@ -1,9 +1,9 @@
 import bank.BankRefactored;
 import bank.BankStorage;
 import client.ClientRefactored;
-import gui.MyFrame;
 
-import javax.swing.*;
+import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
+import gui.MyFrame;
 
 
 public class Main {
@@ -18,7 +18,11 @@ public class Main {
 
         ClientRefactored client1 = new ClientRefactored("Dragos", "Baluta", 1000, "test@email.com", bank1);
         ClientRefactored client2 = new ClientRefactored("Andrei", "Panturu", 1500, "test@email.com", bank2);
-
+        try {
+            FlatVuesionIJTheme.setup();
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
 
         new MyFrame();
 
