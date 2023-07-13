@@ -1,5 +1,7 @@
 package gui;
 
+import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +11,12 @@ public class MyFrame extends JFrame implements ActionListener {
     JButton newCustomer;
     JButton loginPage;
 
+
+
     public MyFrame(){
+
+
+
         int frameWidth = 750;
         int frameHeight = 750;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,6 +49,7 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setVisible(true);
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

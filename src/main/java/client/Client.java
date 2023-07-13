@@ -2,33 +2,33 @@ package client;
 
 
 import account.ClientAccount;
-import bank.BankRefactored;
+import bank.Bank;
 
 import java.util.ArrayList;
 
 
-public class ClientRefactored {
+public class Client {
     private String firstName;
     private String lastName;
     private String email;
 
-    private ArrayList<ClientAccount> clientAccountList = new ArrayList<ClientAccount>();
+    private ArrayList<ClientAccount> clientListOfAccounts = new ArrayList<ClientAccount>();
 
-    public ClientRefactored(String firstName, String lastName, double funds, String email, BankRefactored bankRefactored) {
+    public Client(String firstName, String lastName, double funds, String email, Bank bank) {
         setClientName(firstName, lastName);
-        createNewAccount(funds, bankRefactored);
+        createNewAccount(funds, bank);
         this.email = email;
 
     }
 
-    public void createNewAccount(double funds, BankRefactored bankRefactored) {
-        clientAccountList.add(new ClientAccount(funds, bankRefactored.getBankCode()));
-        bankRefactored.addToClientList(this);
+    public void createNewAccount(double funds, Bank bank) {
+        clientListOfAccounts.add(new ClientAccount(funds, bank.getBankCode()));
+        bank.addToClientList(this);
 
     }
 
     public ArrayList<ClientAccount> getClientAccountList() {
-        return clientAccountList;
+        return clientListOfAccounts;
     }
 
     public String getFirstName() {
@@ -50,7 +50,7 @@ public class ClientRefactored {
 
     @Override
     public String toString() {
-        return "Client Accounts: " + clientAccountList.toString();
+        return "Client Accounts: " + clientListOfAccounts.toString();
     }
 
 //    public ClientAccount getAccount() {

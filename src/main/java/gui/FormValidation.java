@@ -2,6 +2,8 @@ package gui;
 
 
 
+import client.Client;
+
 import javax.swing.*;
 
 public class FormValidation {
@@ -9,13 +11,19 @@ public class FormValidation {
     public static boolean isValidRegister = false;
 
     public static boolean isValidLogin = false;
-        public void formValidationRegister(String name, String amount, int selectedIndex){
+        public void formValidationRegister(String firstName,String lastName,String email,String password, String funds, int selectedIndex){
 
 
-            if(name.isEmpty() || amount.isEmpty()){
+
+
+            if( firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() ||  password.isEmpty() ||  funds.isEmpty()){
+
+
                     JOptionPane.showMessageDialog(null, "Please fill in all the fields");
             }else{
-//                new Controller().newCustomer(name, Double.parseDouble(amount),selectedIndex);
+                Integer.parseInt(password);
+                Integer.parseInt(funds);
+//                Client(firstName, Double.parseDouble(amount),selectedIndex);
                 isValidRegister = true;
             }
 

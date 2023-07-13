@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 
 
 import bank.BankStorage;
+import com.github.lgooddatepicker.components.DatePicker;
+
+import static java.util.stream.Collectors.toList;
 
 
 public class NewCustomer extends JFrame implements ActionListener {
@@ -14,9 +17,10 @@ public class NewCustomer extends JFrame implements ActionListener {
     JLabel firstName = new JLabel("First name ");
     JLabel lastName = new JLabel("Last name ");
     JLabel password = new JLabel("Password ");
-    JLabel funds = new JLabel("<html>First <br> deposit<br>amount</html>");
+    JLabel funds = new JLabel("<html>First deposit<br>amount</html>");
     JLabel bank = new JLabel("Bank");
     JLabel email = new JLabel("Email");
+    JLabel dateOfBirth = new JLabel("Birth Date");
     JTextField emailTF;
     JTextField firstNameTF;
     JTextField lastNameTF;
@@ -27,17 +31,18 @@ public class NewCustomer extends JFrame implements ActionListener {
 
     JComboBox comboBoxBank;
 
+    DatePicker datePicker;
 
     NewCustomer() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
 
-
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
         for (String element : BankStorage.getBankList()) {
             model.addElement(element);
         }
+
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(250, 450, 80, 30);
@@ -59,14 +64,14 @@ public class NewCustomer extends JFrame implements ActionListener {
         password.setBounds(175, 270, 100, 50);
         password.setFont(new Font(null, Font.PLAIN, 15));
 
-//        dateOfBirth.setBounds(175, 300, 100, 50);
-//        dateOfBirth.setFont(new Font(null, Font.PLAIN, 15));
+        dateOfBirth.setBounds(175, 300, 100, 50);
+        dateOfBirth.setFont(new Font(null, Font.PLAIN, 15));
 
 
-        funds.setBounds(175, 330, 150, 100);
-        funds.setFont(new Font(null, Font.PLAIN, 15));
+        funds.setBounds(175, 310, 140, 100);
+        funds.setFont(new Font(null, Font.PLAIN, 13));
 
-        bank.setBounds(175, 365, 150, 100);
+        bank.setBounds(175, 375, 150, 100);
         bank.setFont(new Font(null, Font.PLAIN, 15));
 
 
@@ -86,17 +91,18 @@ public class NewCustomer extends JFrame implements ActionListener {
         passwordTF.setBounds(250, 285, 150, 20);
 
 
-
-
-
         fundsTF = new JTextField();
-        fundsTF.setBounds(250, 315, 150, 20);
+        fundsTF.setBounds(250, 345, 150, 20);
+
+        datePicker = new DatePicker();
+        datePicker.setBounds(250, 315, 150, 20);
 
         comboBoxBank = new JComboBox<String>((model));
         comboBoxBank.addActionListener(this);
-        comboBoxBank.setBounds(245, 400, 180, 30);
+        comboBoxBank.setBounds(245, 410, 180, 30);
 
-
+        this.add(dateOfBirth);
+        this.add(datePicker);
         this.add(emailTF);
         this.add(email);
         this.add(bank);
@@ -119,16 +125,19 @@ public class NewCustomer extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == submitButton) {
-            new FormValidation().formValidationRegister(firstNameTF.getText(), fundsTF.getText(), comboBoxBank.getSelectedIndex());
-
-            if (FormValidation.isValidRegister) {
-                this.dispose();
-                LoginPage loginPage = new LoginPage();
-
-            }
+        if(e.getSource() == submitButton){
+            System.out.println(comboBoxBank.getSelectedIndex());
         }
+
+//        if (e.getSource() == submitButton) {
+//            new FormValidation().formValidationRegister(firstNameTF.getText(), lastNameTF.getText(), emailTF.getText(),passwordTF.getText(), fundsTF.getText(), comboBoxBank.getSelectedIndex());
+//
+//            if (FormValidation.isValidRegister) {
+//                this.dispose();
+//                LoginPage loginPage = new LoginPage();
+//
+//            }
+//        }
 
 
     }

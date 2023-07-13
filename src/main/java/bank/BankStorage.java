@@ -6,15 +6,15 @@ import java.util.UUID;
 
 public class BankStorage {
 
-    static HashMap<UUID,BankRefactored> bankList = new HashMap<UUID,BankRefactored>();
+    static HashMap<UUID, Bank> bankList = new HashMap<UUID, Bank>();
 
-    public static void addNewBank(BankRefactored bankRefactored){
-        bankList.put(bankRefactored.getBankCode(),bankRefactored);
+    public static void addNewBank(Bank bank){
+        bankList.put(bank.getBankCode(), bank);
     }
 
     public static ArrayList<String> getBankList() {
         ArrayList<String> bankNames = new ArrayList<String>();
-        for (BankRefactored element:bankList.values()) {
+        for (Bank element:bankList.values()) {
             bankNames.add(element.getBankName());
         }
         return bankNames;
