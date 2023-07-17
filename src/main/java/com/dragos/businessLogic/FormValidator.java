@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FormValidator {
-   static Register register = new Register();
+//   static Register register = new Register();
     static String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
     static Pattern pattern = Pattern.compile(regex);
 
@@ -24,7 +24,7 @@ public class FormValidator {
             JOptionPane.showMessageDialog(null, "Email already in use!");
             return false;
         } else{
-            register.createNewClientAccount(bankName, firstName, lastName, clientEmail, password, funds);
+            Register.createNewClientAccount(bankName, firstName, lastName, clientEmail, password, funds);
             return true;
         }
 
