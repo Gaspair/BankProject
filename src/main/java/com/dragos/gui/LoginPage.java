@@ -1,7 +1,9 @@
 package com.dragos.gui;
 
 import com.dragos.bank.HashMapOfBanks;
-import com.dragos.businessLogic.Login;
+
+import com.dragos.businessLogic.FormValidatorImpl;
+import com.dragos.businessLogic.FormValidatorInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -75,16 +77,14 @@ public class LoginPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Login login = new Login();
+        FormValidatorInterface formValidatorInterface = new FormValidatorImpl();
         if (e.getSource() == loginButton) {
-            if (email.getText().isEmpty() || passwordTF.getText().isEmpty()) {
+            if (emailTF.getText().isEmpty() || passwordTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
-                if (login.loginClient(bankNames[comboBoxBank.getSelectedIndex()], emailTF.getText(), passwordTF.getText())) {
+                if (formValidatorInterface.formSignInValidator(bankNames[comboBoxBank.getSelectedIndex()], emailTF.getText(), passwordTF.getText())) {
                     this.dispose();
                     new LandingPage(HashMapOfBanks.getBankHashMap().get(bankNames[comboBoxBank.getSelectedIndex()]).getListOfClients().get(emailTF.getText()));
-                } else {
-                    JOptionPane.showMessageDialog(null, "Wrong credentials, please try again!");
                 }
             }
 

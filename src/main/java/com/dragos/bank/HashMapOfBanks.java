@@ -1,6 +1,7 @@
 package com.dragos.bank;
 
-import com.dragos.businessLogic.Register;
+import com.dragos.service.SignUpInterface;
+import com.dragos.service.SignUpInterfaceImpl;
 
 import java.util.HashMap;
 
@@ -35,16 +36,16 @@ public class HashMapOfBanks {
         String bankName1 = bank1.getName();
         String bankName2 = bank2.getName();
         String bankName3 = bank3.getName();
-
+        SignUpInterface signupInterface = new SignUpInterfaceImpl();
         // Register clients
-        Register.createNewClientAccount(bankName1, "Dragos", "Baluta", "test1@gmail.com", "test123", 1001);
-        Register.createNewClientAccount(bankName1, "Ana", "Rusu", "test2@gmail.com", "test123", 1002);
+        signupInterface.singUpClient(bankName1, "Dragos", "Baluta", "test1@gmail.com", "test123", 1001);
+        signupInterface.singUpClient(bankName1, "Ana", "Rusu", "test2@gmail.com", "test123", 1002);
 
-        Register.createNewClientAccount(bankName2, "Mihai", "Eminescu", "test3@gmail.com", "test123", 1003);
-        Register.createNewClientAccount(bankName2, "Ana", "Rusu", "test4@gmail.com", "test123", 1004);
+        signupInterface.singUpClient(bankName2, "Mihai", "Eminescu", "test3@gmail.com", "test123", 1003);
+        signupInterface.singUpClient(bankName2, "Ana", "Rusu", "test4@gmail.com", "test123", 1004);
 
-        Register.createNewClientAccount(bankName3, "Mircea", "Eliade", "test5@gmail.com", "test123", 1005);
-        Register.createNewClientAccount(bankName3, "Ana", "Aslan", "test6@gmail.com", "test123", 1006);
+        signupInterface.singUpClient(bankName3, "Mircea", "Eliade", "test5@gmail.com", "test123", 1005);
+        signupInterface.singUpClient(bankName3, "Ana", "Aslan", "test6@gmail.com", "test123", 1006);
     }
 
 

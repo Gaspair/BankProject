@@ -5,6 +5,7 @@ import com.dragos.bank.HashMapOfBanks;
 import com.dragos.client.Client;
 import com.dragos.gui.LandingPage;
 import com.dragos.gui.MainFrame;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 
@@ -20,15 +21,15 @@ public class Main {
 
 
         try {
-            UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
+            UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
 
 
-//        new MainFrame().MyFrame();
+        new MainFrame().MyFrame();
 
-        new LandingPage(HashMapOfBanks.getBankHashMap().get("Monzo").getListOfClients().get("test1@gmail.com"));
+//        new LandingPage(HashMapOfBanks.getBankHashMap().get("Monzo").getListOfClients().get("test1@gmail.com"));
 
 
 

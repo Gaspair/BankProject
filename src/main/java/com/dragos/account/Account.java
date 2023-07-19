@@ -3,7 +3,7 @@ package com.dragos.account;
 import javax.swing.*;
 import java.util.UUID;
 
-public class Account implements IAccount {
+public class Account {
 
     private UUID accountId;
     private double funds;
@@ -12,7 +12,7 @@ public class Account implements IAccount {
         accountId = UUID.randomUUID();
         setFunds(funds);
     }
-    private void setFunds(double funds) {
+    public void setFunds(double funds) {
         this.funds = funds;
     }
     public double getFunds() {
@@ -21,26 +21,12 @@ public class Account implements IAccount {
     public UUID getAccountId() {
         return accountId;
     }
-    @Override
-    public void depositFunds(double amount) {
-        this.setFunds(this.getFunds() + amount );
-    }
-    @Override
-    public void withdrawFunds(double amount) {
-        if(this.getFunds() < amount){
-            JOptionPane.showMessageDialog(null, "Insufficient Funds!");
-        }else{
-            this.setFunds(this.getFunds() - amount );
-        }
-    }
+
+
+
+
 
     public void transferFunds(Account receiver, double amount){
-        if(this.getFunds() < amount){
-            JOptionPane.showMessageDialog(null, "Insufficient Funds!");
-        }else{
-            this.setFunds(this.getFunds() - amount );
-            receiver.setFunds(receiver.getFunds() + amount);
-        }
     }
 
 

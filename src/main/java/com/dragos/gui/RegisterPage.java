@@ -1,10 +1,9 @@
 package com.dragos.gui;
 
 
-
 import com.dragos.bank.HashMapOfBanks;
-import com.dragos.businessLogic.FormValidator;
-import com.dragos.businessLogic.Register;
+import com.dragos.businessLogic.FormValidatorImpl;
+import com.dragos.businessLogic.FormValidatorInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,16 +29,11 @@ public class RegisterPage extends JFrame implements ActionListener {
     JComboBox comboBoxBank;
 
 
-
     RegisterPage() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
         bankNames = HashMapOfBanks.getBankHashMap().keySet().toArray(new String[0]);
-
-
-
-
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(250, 450, 80, 30);
@@ -60,7 +54,6 @@ public class RegisterPage extends JFrame implements ActionListener {
 
         password.setBounds(175, 270, 100, 50);
         password.setFont(new Font(null, Font.PLAIN, 15));
-
 
 
         funds.setBounds(175, 310, 140, 100);
@@ -90,7 +83,6 @@ public class RegisterPage extends JFrame implements ActionListener {
         fundsTF.setBounds(250, 345, 150, 27);
 
 
-
         comboBoxBank = new JComboBox<String>((bankNames));
         comboBoxBank.addActionListener(this);
         comboBoxBank.setBounds(245, 410, 180, 30);
@@ -117,24 +109,19 @@ public class RegisterPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
-
-
         if (e.getSource() == submitButton) {
-
-            if(bankNames[comboBoxBank.getSelectedIndex()].isEmpty() || firstNameTF.getText().isEmpty() || lastNameTF.getText().isEmpty() || emailTF.getText().toLowerCase().isEmpty() || passwordTF.getText().isBlank() || fundsTF.getText().isEmpty()){
+            FormValidatorInterface registerForm = new FormValidatorImpl();
+            if (bankNames[comboBoxBank.getSelectedIndex()].isEmpty() || firstNameTF.getText().isEmpty() || lastNameTF.getText().isEmpty() || emailTF.getText().toLowerCase().isEmpty() || passwordTF.getText().isBlank() || fundsTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
-            }else{
-                if( FormValidator.formValidator(bankNames[comboBoxBank.getSelectedIndex()],firstNameTF.getText(), lastNameTF.getText(), emailTF.getText().toLowerCase(),passwordTF.getText(),Double.parseDouble(fundsTF.getText()) )){
+            } else {
+                if (registerForm.formSignUpValidator(bankNames[comboBoxBank.getSelectedIndex()], firstNameTF.getText(), lastNameTF.getText(), emailTF.getText().toLowerCase(), passwordTF.getText(), Double.parseDouble(fundsTF.getText())))
                     this.dispose();
                     new LoginPage();
-                }
-
             }
-
         }
 
-
     }
+
+
 }
+

@@ -1,4 +1,4 @@
-package com.dragos.businessLogic;
+package com.dragos.service;
 
 import com.dragos.bank.HashMapOfBanks;
 import com.dragos.client.Client;
@@ -6,13 +6,8 @@ import com.dragos.client.Client;
 import javax.swing.*;
 import java.util.Objects;
 
-public class Login {
-
-
-
-
-
-    public boolean loginClient(String bankName, String email, String password) {
+public class SignInInterfaceImpl implements SignInInterface{
+    public boolean signIn(String bankName, String email, String password) {
         Client client = HashMapOfBanks.getBankHashMap().get(bankName).getListOfClients().get(email);
         if (client != null) {
             String clientPassword = client.getClientPassword();
