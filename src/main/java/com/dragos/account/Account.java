@@ -1,6 +1,5 @@
 package com.dragos.account;
 
-import javax.swing.*;
 import java.util.UUID;
 
 public class Account {

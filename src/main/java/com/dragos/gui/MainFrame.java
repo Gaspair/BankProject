@@ -59,6 +59,7 @@ public class MainFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == loginPage) {
             this.dispose();
             LoginPage loginPageWindow =  new LoginPage();
+
         }
 
     }

@@ -38,14 +38,14 @@ public class HashMapOfBanks {
         String bankName3 = bank3.getName();
         SignUpInterface signupInterface = new SignUpInterfaceImpl();
         // Register clients
-        signupInterface.singUpClient(bankName1, "Dragos", "Baluta", "test1@gmail.com", "test123", 1001);
-        signupInterface.singUpClient(bankName1, "Ana", "Rusu", "test2@gmail.com", "test123", 1002);
-
-        signupInterface.singUpClient(bankName2, "Mihai", "Eminescu", "test3@gmail.com", "test123", 1003);
-        signupInterface.singUpClient(bankName2, "Ana", "Rusu", "test4@gmail.com", "test123", 1004);
-
-        signupInterface.singUpClient(bankName3, "Mircea", "Eliade", "test5@gmail.com", "test123", 1005);
-        signupInterface.singUpClient(bankName3, "Ana", "Aslan", "test6@gmail.com", "test123", 1006);
+//        signupInterface.singUpClient(bankName1, "Dragos", "Baluta", "test1@gmail.com", "test123", 1001);
+//        signupInterface.singUpClient(bankName1, "Ana", "Rusu", "test2@gmail.com", "test123", 1002);
+//
+//        signupInterface.singUpClient(bankName2, "Mihai", "Eminescu", "test3@gmail.com", "test123", 1003);
+//        signupInterface.singUpClient(bankName2, "Ana", "Rusu", "test4@gmail.com", "test123", 1004);
+//
+//        signupInterface.singUpClient(bankName3, "Mircea", "Eliade", "test5@gmail.com", "test123", 1005);
+//        signupInterface.singUpClient(bankName3, "Ana", "Aslan", "test6@gmail.com", "test123", 1006);
     }
 
 
