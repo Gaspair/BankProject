@@ -6,6 +6,7 @@ import com.dragos.service.SignUpInterface;
 import com.dragos.service.SignUpInterfaceImpl;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,7 +39,7 @@ public class FormValidatorImpl implements FormValidatorInterface {
 
 
 
-    public  boolean formSignUpValidator(String bankName, String firstName, String lastName, String clientEmail, String password, double funds) {
+    public  boolean formSignUpValidator(String bankName, String firstName, String lastName, String clientEmail, String password, double funds){
         Matcher matcher = pattern.matcher(clientEmail);
         if(!matcher.matches()  ){
             JOptionPane.showMessageDialog(null, "Please enter a valid email address!");

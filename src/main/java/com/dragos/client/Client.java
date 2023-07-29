@@ -1,8 +1,9 @@
 package com.dragos.client;
 
-import com.dragos.Controller;
-import com.dragos.DatabaseConnection;
+
 import com.dragos.account.Account;
+
+import java.sql.SQLException;
 
 public class Client {
     private String firstName;
@@ -15,23 +16,13 @@ public class Client {
 
 
 
-
-    String dbUrl = "jdbc:mysql://localhost:3306/bankproject";
-    String user = "student";
-    String pass = "student";
-
-
-    DatabaseConnection databaseConnection = new DatabaseConnection(dbUrl, user, pass);
-    Controller controller = new Controller(databaseConnection);
-
-
-    public Client(String firstName,String lastName,String clientEmail,String clientPassword, double funds){
+    public Client(String firstName,String lastName,String clientEmail,String clientPassword, double funds) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.clientEmail = clientEmail;
         this.clientPassword = clientPassword;
         this.clientAccount = new Account(funds);
-        controller.insertClient(this);
+
     }
 
     public String getClientPassword() {

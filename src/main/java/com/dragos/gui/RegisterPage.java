@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 
 public class RegisterPage extends JFrame implements ActionListener {
@@ -114,9 +115,9 @@ public class RegisterPage extends JFrame implements ActionListener {
             if (bankNames[comboBoxBank.getSelectedIndex()].isEmpty() || firstNameTF.getText().isEmpty() || lastNameTF.getText().isEmpty() || emailTF.getText().toLowerCase().isEmpty() || passwordTF.getText().isBlank() || fundsTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
-                if (registerForm.formSignUpValidator(bankNames[comboBoxBank.getSelectedIndex()], firstNameTF.getText(), lastNameTF.getText(), emailTF.getText().toLowerCase(), passwordTF.getText(), Double.parseDouble(fundsTF.getText())))
-                    this.dispose();
-                    new LoginPage();
+                    if (registerForm.formSignUpValidator(bankNames[comboBoxBank.getSelectedIndex()], firstNameTF.getText(), lastNameTF.getText(), emailTF.getText().toLowerCase(), passwordTF.getText(), Double.parseDouble(fundsTF.getText())))
+                        this.dispose();
+                new LoginPage();
             }
         }
 
