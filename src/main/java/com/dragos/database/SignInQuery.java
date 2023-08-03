@@ -39,7 +39,7 @@ public class SignInQuery {
             if (myRs.next()) {
                 int clientId = myRs.getInt("client_id");
                 String first_name = myRs.getString("first_name");
-                String last_name = myRs.getString("first_name");
+                String last_name = myRs.getString("last_name");
                 int accountId = myRs.getInt("account_id");
                 double funds = myRs.getDouble("funds");
 
@@ -66,23 +66,12 @@ public class SignInQuery {
         return client;
     }
 
-    // Other methods and main() can stay the same
-    // ...
+
 }
 
 
 
 
-//    try{
-//        int clientId=SignInClient(1,"michael.scott@dundermifflin.com", "password123");
-//        if (clientId != -1) {
-//            System.out.println("Client ID: " + clientId);
-//            // Use the clientId somewhere else as needed
-//        } else {
-//            System.out.println("Client not found.");
-//        }
-//    }catch(SQLException e){
-//        e.printStackTrace();
-//    }
+
 
 

@@ -2,7 +2,7 @@ package com.dragos;
 
 
 
-import com.dragos.database.SignInQuery;
+import com.dragos.database.GetBanksQuery;
 import com.dragos.gui.MainFrame;
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -14,7 +14,7 @@ import static com.dragos.database.SignInQuery.SignInClient;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
 
 
@@ -24,12 +24,8 @@ public class Main {
             System.err.println("Failed to initialize LaF");
         }
 
-
-//        new MainFrame().MyFrame();
-//        SignInQuery signInQuery = new SignInQuery();
-//        System.out.println(signInQuery.toString());
-
-
+        GetBanksQuery.getBanks();
+        new MainFrame().MyFrame();
     }
 
 
