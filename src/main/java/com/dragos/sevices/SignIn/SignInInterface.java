@@ -1,5 +1,7 @@
 package com.dragos.sevices.SignIn;
 
+import com.dragos.businessLogic.Client;
+
 public interface SignInInterface {
-    public boolean signIn(String bankName, String email, String password);
+    public Client signIn(int bankId, String email, String password);
 }

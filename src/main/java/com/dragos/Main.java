@@ -25,7 +25,7 @@ public class Main {
         }
 
 
-//        new MainFrame().MyFrame();
+        new MainFrame().MyFrame();
 //        SignInQuery signInQuery = new SignInQuery();
 //        System.out.println(signInQuery.toString());
 

@@ -39,7 +39,7 @@ public class SignInQuery {
             if (myRs.next()) {
                 int clientId = myRs.getInt("client_id");
                 String first_name = myRs.getString("first_name");
-                String last_name = myRs.getString("first_name");
+                String last_name = myRs.getString("last_name");
                 int accountId = myRs.getInt("account_id");
                 double funds = myRs.getDouble("funds");
 

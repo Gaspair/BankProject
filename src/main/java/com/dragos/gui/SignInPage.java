@@ -1,5 +1,9 @@
 package com.dragos.gui;
 
+import com.dragos.gui.accountManagement.LandingPage;
+import com.dragos.sevices.SignIn.SignInImpl;
+import com.dragos.sevices.SignIn.SignInInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -64,6 +68,8 @@ public class SignInPage extends JFrame implements ActionListener {
             if (emailTF.getText().isEmpty() || passwordTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
+                SignInInterface signIn = new SignInImpl();
+                new LandingPage( signIn.signIn(1,emailTF.getText(),passwordTF.getText()));
 
             }
 
