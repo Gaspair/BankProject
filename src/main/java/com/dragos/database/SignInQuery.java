@@ -66,23 +66,12 @@ public class SignInQuery {
         return client;
     }
 
-    // Other methods and main() can stay the same
-    // ...
+
 }
 
 
 
 
-//    try{
-//        int clientId=SignInClient(1,"michael.scott@dundermifflin.com", "password123");
-//        if (clientId != -1) {
-//            System.out.println("Client ID: " + clientId);
-//            // Use the clientId somewhere else as needed
-//        } else {
-//            System.out.println("Client not found.");
-//        }
-//    }catch(SQLException e){
-//        e.printStackTrace();
-//    }
+
 
 
