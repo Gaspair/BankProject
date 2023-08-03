@@ -1,22 +1,33 @@
-package com.dragos.client;
+package com.dragos.businessLogic;
 
-import com.dragos.account.Account;
+
+import java.util.UUID;
 
 public class Client {
+    private int client_Id;
     private String firstName;
     private String lastName;
     private String clientEmail;
-
     private String clientPassword;
     private Account clientAccount;
 
-    public Client(String firstName,String lastName,String clientEmail,String clientPassword, double funds){
+
+    public Client(String firstName, String lastName, String clientEmail, String clientPassword, double funds) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.clientEmail = clientEmail;
         this.clientPassword = clientPassword;
         this.clientAccount = new Account(funds);
 
+    }
+
+
+    public Client(int client_id,String firstName, String lastName, String clientEmail, Account account) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.clientEmail = clientEmail;
+        this.client_Id = client_id;
+        this.clientAccount=account;
     }
 
     public String getClientPassword() {
@@ -38,4 +49,6 @@ public class Client {
     public Account getClientAccount() {
         return clientAccount;
     }
+
+
 }

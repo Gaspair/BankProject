@@ -54,11 +54,12 @@ public class MainFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == newCustomer){
             this.dispose();
-            new RegisterPage();
+            new SignUpPage();
 
         } else if (e.getSource() == loginPage) {
             this.dispose();
-            LoginPage loginPageWindow =  new LoginPage();
+            SignInPage loginPageWindow =  new SignInPage();
+
         }
 
     }
