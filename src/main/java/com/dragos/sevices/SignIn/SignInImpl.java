@@ -4,14 +4,14 @@ import com.dragos.businessLogic.Client;
 
 import java.sql.SQLException;
 
-import static com.dragos.database.SignInQuery.SignInClient;
+import static com.dragos.database.SignInQuery.signInClient;
 
 public class SignInImpl implements SignInInterface{
     @Override
     public Client signIn(int bank_id, String email, String password) {
 
         try{
-        Client client = SignInClient(bank_id,email, password);
+        Client client = signInClient(bank_id,email, password);
         if (client != null) {
             return client;
         } else {

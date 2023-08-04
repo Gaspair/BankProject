@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class SignInQuery {
 
-    public static Client SignInClient(int bankId, String customerEmail, String password) throws SQLException {
+    public static Client signInClient(int bankId, String customerEmail, String password) throws SQLException {
 
         Client client = null;
         Connection myConn = null;
