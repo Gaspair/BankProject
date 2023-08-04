@@ -46,7 +46,7 @@ public class LandingPage extends JFrame implements ActionListener {
         transferButton.addActionListener(this);
         accountSettingButton.setBounds(800, 300, 250, 150);
 
-//        depositButton.addActionListener(e -> handleDeposit());
+//       depositButton.addActionListener(e -> DepositFunds.handleDeposit());
 //        withdrawButton.addActionListener(e -> handleWithdraw());
 //        transferButton.addActionListener(e -> handleTransfer());
 

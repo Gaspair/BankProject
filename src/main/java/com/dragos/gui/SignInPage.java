@@ -65,13 +65,16 @@ public class SignInPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
+            SignInInterface signIn = null;
             if (emailTF.getText().isEmpty() || passwordTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
-                SignInInterface signIn = new SignInImpl();
-                new LandingPage( signIn.signIn(1,emailTF.getText(),passwordTF.getText()));
-
+                signIn = new SignInImpl();
             }
+            ;
+            new LandingPage(signIn.signIn(1, emailTF.getText(), passwordTF.getText()));
+
+        }
 
 
         }
@@ -79,4 +82,4 @@ public class SignInPage extends JFrame implements ActionListener {
 
 
     }
-}
+

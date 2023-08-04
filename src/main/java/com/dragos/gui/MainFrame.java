@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class MainFrame extends JFrame implements ActionListener {
     JButton newCustomer;
@@ -54,7 +55,11 @@ public class MainFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == newCustomer){
             this.dispose();
-            new SignUpPage();
+            try {
+                SignUpPage signUpPageWindow = new SignUpPage();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
 
         } else if (e.getSource() == loginPage) {
             this.dispose();

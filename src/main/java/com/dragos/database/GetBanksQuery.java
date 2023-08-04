@@ -2,16 +2,13 @@ package com.dragos.database;
 
 
 
-        import com.dragos.businessLogic.Account;
-        import com.dragos.businessLogic.Client;
-
         import java.sql.*;
         import java.util.HashMap;
 
 public class GetBanksQuery {
 
 
-    public static void getBanks() throws SQLException {
+    public static HashMap getBanks() throws SQLException {
 
         HashMap banksHashMap = new HashMap();
         Connection myConn = null;
@@ -36,7 +33,7 @@ public class GetBanksQuery {
 
             // 4. Process the result set
             while (myRs.next()) {
-                banksHashMap.put(  myRs.getInt("bank_id"),myRs.getString("bank_name"));
+                banksHashMap.put(  myRs.getString("bank_name"),myRs.getInt("bank_id"));
                   }
         } catch (Exception exc) {
             exc.printStackTrace();
@@ -54,8 +51,9 @@ public class GetBanksQuery {
                 myConn.close();
             }
         }
-    }
 
+        return banksHashMap;
+    }
 
 }
 
