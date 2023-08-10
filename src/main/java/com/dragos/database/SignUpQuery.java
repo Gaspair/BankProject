@@ -1,7 +1,7 @@
 package com.dragos.database;
 
-import com.dragos.businessLogic.Account;
-import com.dragos.businessLogic.Client;
+import businessLogic.Client;
+
 
 import java.sql.*;
 

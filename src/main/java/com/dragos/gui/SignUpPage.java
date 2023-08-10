@@ -4,8 +4,9 @@ package com.dragos.gui;
 
 
 import com.dragos.database.GetBanksQuery;
-import com.dragos.sevices.signUp.SignUpImpl;
-import com.dragos.sevices.signUp.SignUpInterface;
+import sevices.AuthServicesImpl;
+import com.dragos.sevices.AuthServicesInterface;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -119,13 +120,13 @@ public class SignUpPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        SignUpInterface signUpController = new SignUpImpl();
+        AuthServicesInterface signUp = new AuthServicesImpl();
         if (e.getSource() == submitButton) {
             if ( firstNameTF.getText().isEmpty() || lastNameTF.getText().isEmpty() || emailTF.getText().toLowerCase().isEmpty() || passwordTF.getText().isBlank() || fundsTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
                 try {
-                    if (signUpController.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText()))
+                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText()))
                         this.dispose();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
