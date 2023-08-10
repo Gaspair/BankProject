@@ -3,7 +3,6 @@ package com.dragos.gui;
 
 
 
-import com.dragos.database.GetBanksQuery;
 import com.dragos.sevices.AuthServicesImpl;
 import com.dragos.sevices.AuthServicesInterface;
 
@@ -31,21 +30,19 @@ public class SignUpPage extends JFrame implements ActionListener {
     JTextField fundsTF;
     JButton submitButton;
     String[] bankNames;
-    JComboBox comboBoxBank;
+    JComboBox<String> comboBoxBank;
     HashMap banksHashMap ;
 
-
+    AuthServicesInterface signUp = new AuthServicesImpl();
 
     SignUpPage() throws SQLException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
 
-        banksHashMap =  GetBanksQuery.getBanks();
+        banksHashMap =  signUp.getBanks();
 
-        bankNames = (String[])banksHashMap.keySet().stream()
-                .map(Object::toString)
-                .toArray(String[]::new);
+        bankNames = (String[]) banksHashMap.keySet().toArray(new String[0]);
 
 
         submitButton = new JButton("Submit");
@@ -123,13 +120,13 @@ public class SignUpPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        AuthServicesInterface signUp = new AuthServicesImpl();
+
         if (e.getSource() == submitButton) {
             if ( firstNameTF.getText().isEmpty() || lastNameTF.getText().isEmpty() || emailTF.getText().toLowerCase().isEmpty() || passwordTF.getText().isBlank() || fundsTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
                 try {
-                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText())) {
+                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText(), Double.parseDouble(fundsTF.getText()))) {
                         this.dispose();
                         new SignInPage();
                     }
