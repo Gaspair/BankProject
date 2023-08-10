@@ -21,6 +21,8 @@ public class MainFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
+
+
         JLabel label = new JLabel("First things first!");
         label.setBounds(frameWidth/3-30 , 0, 500, 250); // Set the position and size of the label
 
@@ -43,9 +45,11 @@ public class MainFrame extends JFrame implements ActionListener {
         this.add(label);
 
         this.pack();
+
         this.setSize(frameWidth, frameHeight);
         this.setResizable(false);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
 
     }
 
