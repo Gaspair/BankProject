@@ -1,6 +1,6 @@
-package com.dragos.businessLogic;
+package businessLogic;
 
-
+import com.dragos.businessLogic.Account;
 import java.util.UUID;
 
 public class Client {
@@ -10,6 +10,7 @@ public class Client {
     private String clientEmail;
     private String clientPassword;
     private Account clientAccount;
+    private int clientAccountId;
 
 
     public Client(String firstName, String lastName, String clientEmail, String clientPassword, double funds) {

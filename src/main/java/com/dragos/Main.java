@@ -3,8 +3,6 @@ package com.dragos;
 
 
 import com.dragos.database.GetBanksQuery;
-import com.dragos.database.SignInQuery;
-import com.dragos.database.SignUpQuery;
 import com.dragos.gui.MainFrame;
 import com.formdev.flatlaf.FlatLightLaf;
 

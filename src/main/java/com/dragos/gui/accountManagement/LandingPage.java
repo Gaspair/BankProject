@@ -1,6 +1,6 @@
 package com.dragos.gui.accountManagement;
 
-import com.dragos.businessLogic.Client;
+import businessLogic.Client;
 import com.dragos.sevices.Operations.OperationsInterface;
 import com.dragos.sevices.Operations.OperationsInterfaceImpl;
 
@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Optional;
 
 public class LandingPage extends JFrame implements ActionListener {
     OperationsInterface transactionInterface = new OperationsInterfaceImpl();
