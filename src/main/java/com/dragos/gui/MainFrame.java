@@ -67,7 +67,11 @@ public class MainFrame extends JFrame implements ActionListener {
 
         } else if (e.getSource() == loginPage) {
             this.dispose();
-            SignInPage loginPageWindow =  new SignInPage();
+            try {
+                SignInPage loginPageWindow =  new SignInPage();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
 
         }
 

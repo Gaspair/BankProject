@@ -4,6 +4,7 @@ import businessLogic.Client;
 
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public interface AuthServicesInterface {
 
@@ -11,4 +12,5 @@ public interface AuthServicesInterface {
 
 
     public Client signIn(int bankId, String email, String password) throws SQLException;
+    public HashMap getBanks() throws SQLException;
 }

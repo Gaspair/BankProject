@@ -8,6 +8,7 @@ import com.dragos.database.SignUpQuery;
 
 import javax.swing.*;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,10 +18,10 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
     @Override
     public Client signIn(int bank_id, String email, String password) throws SQLException {
 
-            Client client =null;
-            Connection myConn = DatabaseConnection.getInstance().getConnection();
+        Client client = null;
+        Connection myConn = DatabaseConnection.getInstance().getConnection();
 
-        try{
+        try {
             // 2. Create a statement
             PreparedStatement myStmt = myConn.prepareStatement("SELECT c.client_id, c.first_name, c.last_name, c.email, a.account_id, a.funds " +
                     "FROM client c " +
@@ -32,7 +33,7 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
             myStmt.setString(3, password);
 
             // 3. Execute SQL query
-           ResultSet myRs = myStmt.executeQuery();
+            ResultSet myRs = myStmt.executeQuery();
 
             // 4. Process the result set
             if (myRs.next()) {
@@ -43,31 +44,30 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
                 double funds = myRs.getDouble("funds");
 
 
-                client = new Client(client_Id, first_name,last_name, email,new Account(accountId,funds));
-            }else{
+                client = new Client(client_Id, first_name, last_name, email, new Account(accountId, funds));
+            } else {
                 JOptionPane.showMessageDialog(null, "Wrong credentials!");
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-            return client;
+        return client;
 
     }
 
     @Override
-    public  boolean signUp(int bankId, String customerEmail, String password, String first_name, String last_name) throws SQLException {
+    public boolean signUp(int bankId, String customerEmail, String password, String first_name, String last_name) throws SQLException {
         Connection myConn = DatabaseConnection.getInstance().getConnection();
 
         PreparedStatement insertAccountStmt = null;
         PreparedStatement insertClientStmt = null;
         ResultSet generatedKeys = null;
 
-       if(!formValidator(customerEmail)){
+        if (!formValidator(customerEmail)) {
             return false;
         }
 
-        try{
-
+        try {
 
 
             // 2. Create a statement to insert a new account
@@ -93,21 +93,45 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
             insertClientStmt.executeUpdate();
 
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-    return true;
+        return true;
+    }
+
+    @Override
+    public HashMap getBanks() throws SQLException {
+        Connection myConn = DatabaseConnection.getInstance().getConnection();
+        HashMap banksHashMap = new HashMap();
+
+        try {
+
+
+            // 2. Create a statement
+            Statement myStmt = myConn.createStatement();
+
+
+            // 3. Execute SQL query
+            ResultSet myRs = myStmt.executeQuery("SELECT * from BANK;");
+
+            // 4. Process the result set
+            while (myRs.next()) {
+                banksHashMap.put(myRs.getString("bank_name"), myRs.getInt("bank_id"));
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+        return banksHashMap;
     }
 
 
-
-    private boolean formValidator(String email){
-         String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-         Pattern pattern = Pattern.compile(regex);
+    private boolean formValidator(String email) {
+        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
 
 
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email address!");
             return false;
         }

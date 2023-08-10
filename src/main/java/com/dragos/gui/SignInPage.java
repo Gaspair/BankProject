@@ -5,11 +5,13 @@ import com.dragos.gui.accountManagement.LandingPage;
 import businessLogic.Client;
 import com.dragos.sevices.AuthServicesImpl;
 import com.dragos.sevices.AuthServicesInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class SignInPage extends JFrame implements ActionListener {
 
@@ -21,11 +23,19 @@ public class SignInPage extends JFrame implements ActionListener {
     JPasswordField passwordTF;
     JButton loginButton;
     JLabel title = new JLabel("Login");
+    JLabel bank = new JLabel("Bank");
+    String[] bankNames;
+    JComboBox<String> comboBoxBank;
+    HashMap banksHashMap;
+    AuthServicesInterface signIn = new AuthServicesImpl();
 
-    public SignInPage() {
+    public SignInPage() throws SQLException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
+        banksHashMap = signIn.getBanks();
+
+        bankNames = (String[]) banksHashMap.keySet().toArray(new String[0]);
 
 
         loginButton = new JButton("Login");
@@ -48,9 +58,16 @@ public class SignInPage extends JFrame implements ActionListener {
         passwordTF = new JPasswordField();
         passwordTF.setBounds(245, 235, 150, 27);
 
+        bank.setBounds(180, 255, 150, 50);
+        bank.setFont(new Font(null, Font.PLAIN, 15));
 
 
+        comboBoxBank = new JComboBox<String>((bankNames));
+        comboBoxBank.addActionListener(this);
+        comboBoxBank.setBounds(245, 265, 180, 30);
 
+        this.add(bank);
+        this.add(comboBoxBank);
         this.add(loginButton);
         this.add(emailTF);
         this.add(passwordTF);
@@ -68,13 +85,12 @@ public class SignInPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
-            AuthServicesInterface signIn =new AuthServicesImpl();
             if (emailTF.getText().isEmpty() || passwordTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             }
             try {
-                Client client =signIn.signIn(1, emailTF.getText(), passwordTF.getText());
-                if (client != null){
+                Client client = signIn.signIn(1, emailTF.getText(), passwordTF.getText());
+                if (client != null) {
                     new LandingPage(client);
                 }
 
@@ -85,9 +101,8 @@ public class SignInPage extends JFrame implements ActionListener {
         }
 
 
-        }
-
-
-
     }
+
+
+}
 
