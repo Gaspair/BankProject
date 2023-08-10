@@ -4,7 +4,7 @@ package com.dragos.gui;
 
 
 import com.dragos.database.GetBanksQuery;
-import sevices.AuthServicesImpl;
+import com.dragos.sevices.AuthServicesImpl;
 import com.dragos.sevices.AuthServicesInterface;
 
 
@@ -39,6 +39,7 @@ public class SignUpPage extends JFrame implements ActionListener {
     SignUpPage() throws SQLException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
+
 
         banksHashMap =  GetBanksQuery.getBanks();
 
@@ -115,6 +116,8 @@ public class SignUpPage extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setSize(750, 750);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
+
     }
 
 
@@ -126,12 +129,14 @@ public class SignUpPage extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
                 try {
-                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText()))
+                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText())) {
                         this.dispose();
+                        new SignInPage();
+                    }
                 } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "An error occurred please try again!");
                     throw new RuntimeException(ex);
                 }
-                new SignInPage();
             }
         }
 

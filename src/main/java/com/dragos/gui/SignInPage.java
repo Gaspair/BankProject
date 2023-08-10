@@ -1,16 +1,15 @@
 package com.dragos.gui;
 
 import com.dragos.gui.accountManagement.LandingPage;
-import sevices.AuthServicesImpl;
-import businessLogic.Client;
-import com.dragos.sevices.AuthServicesInterface;
 
+import businessLogic.Client;
+import com.dragos.sevices.AuthServicesImpl;
+import com.dragos.sevices.AuthServicesInterface;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class SignInPage extends JFrame implements ActionListener {
 
@@ -62,17 +61,17 @@ public class SignInPage extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setSize(750, 750);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
-            AuthServicesInterface signIn = null;
+            AuthServicesInterface signIn =new AuthServicesImpl();
             if (emailTF.getText().isEmpty() || passwordTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             }
-            signIn = new AuthServicesImpl();
             try {
                 Client client =signIn.signIn(1, emailTF.getText(), passwordTF.getText());
                 if (client != null){
