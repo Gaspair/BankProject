@@ -126,7 +126,7 @@ public class SignUpPage extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
                 try {
-                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText())) {
+                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText(), Double.parseDouble(fundsTF.getText()))) {
                         this.dispose();
                         new SignInPage();
                     }

@@ -56,7 +56,7 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
     }
 
     @Override
-    public boolean signUp(int bankId, String customerEmail, String password, String first_name, String last_name) throws SQLException {
+    public boolean signUp(int bankId, String customerEmail, String password, String first_name, String last_name,double funds) throws SQLException {
         Connection myConn = DatabaseConnection.getInstance().getConnection();
 
         PreparedStatement insertAccountStmt = null;
@@ -72,7 +72,7 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
 
             // 2. Create a statement to insert a new account
             insertAccountStmt = myConn.prepareStatement("INSERT INTO account (funds) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
-            insertAccountStmt.setDouble(1, 0); // Assuming you want to start with 0 funds
+            insertAccountStmt.setDouble(1, funds); // Assuming you want to start with 0 funds
             insertAccountStmt.executeUpdate();
 
             // 3. Retrieve the generated account_id
