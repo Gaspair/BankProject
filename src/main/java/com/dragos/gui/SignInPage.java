@@ -89,7 +89,7 @@ public class SignInPage extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             }
             try {
-                Client client = signIn.signIn(1, emailTF.getText(), passwordTF.getText());
+                Client client = signIn.signIn((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]), emailTF.getText(), passwordTF.getText());
                 if (client != null) {
                     new LandingPage(client);
                 }
