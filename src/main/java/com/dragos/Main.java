@@ -2,7 +2,6 @@ package com.dragos;
 
 
 
-import com.dragos.database.GetBanksQuery;
 import com.dragos.gui.MainFrame;
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -25,11 +24,7 @@ public class Main {
         }
 
 
-        GetBanksQuery.getBanks();
         new MainFrame().MyFrame();
-//        SignUpQuery.SignUp(1,"test2@gmail.com","test123","Ana","Eisgang");
-
-//        System.out.println( SignInQuery.SignInClient(1,"test2@gmail.com","test123").getClientAccount().getFunds());
     }
 
 

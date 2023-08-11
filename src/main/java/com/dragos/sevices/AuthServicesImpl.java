@@ -4,7 +4,6 @@ import businessLogic.Client;
 import com.dragos.businessLogic.Account;
 
 import com.dragos.database.DatabaseConnection;
-import com.dragos.database.SignUpQuery;
 
 import javax.swing.*;
 import java.sql.*;
@@ -56,14 +55,18 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
     }
 
     @Override
-    public boolean signUp(int bankId, String customerEmail, String password, String first_name, String last_name,double funds) throws SQLException {
+    public boolean signUp(int bankId, String customerEmail, String password, String first_name, String last_name, double funds) throws SQLException {
         Connection myConn = DatabaseConnection.getInstance().getConnection();
 
         PreparedStatement insertAccountStmt = null;
         PreparedStatement insertClientStmt = null;
         ResultSet generatedKeys = null;
 
-        if (!formValidator(customerEmail)) {
+
+        if (!emailValidator(customerEmail)) {
+            return false;
+        }
+        if (!passwordValidator(password)) {
             return false;
         }
 
@@ -73,7 +76,13 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
             // 2. Create a statement to insert a new account
             insertAccountStmt = myConn.prepareStatement("INSERT INTO account (funds) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
             insertAccountStmt.setDouble(1, funds); // Assuming you want to start with 0 funds
-            insertAccountStmt.executeUpdate();
+            int accountUpdateResult = insertAccountStmt.executeUpdate();
+
+
+            if (accountUpdateResult <= 0) {
+                return false;
+            }
+
 
             // 3. Retrieve the generated account_id
             generatedKeys = insertAccountStmt.getGeneratedKeys();
@@ -90,11 +99,17 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
             insertClientStmt.setString(4, password);
             insertClientStmt.setString(5, first_name);
             insertClientStmt.setString(6, last_name);
-            insertClientStmt.executeUpdate();
+            int clientUpdateResult = insertClientStmt.executeUpdate();
+            if (clientUpdateResult <= 0) {
+                return false;
+            }
+        } catch (SQLIntegrityConstraintViolationException duplicateEmailEx) {
 
-
+            JOptionPane.showMessageDialog(null, "An account already exists with this email!");
+            return false;
         } catch (Exception ex) {
             ex.printStackTrace();
+            return false;
         }
         return true;
     }
@@ -125,7 +140,7 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
     }
 
 
-    private boolean formValidator(String email) {
+    private boolean emailValidator(String email) {
         String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
@@ -133,6 +148,20 @@ public class AuthServicesImpl implements com.dragos.sevices.AuthServicesInterfac
 
         if (!matcher.matches()) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email address!");
+            return false;
+        }
+        return true;
+    }
+
+
+    private boolean passwordValidator(String password) {
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+
+
+        if (!matcher.matches()) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid password!");
             return false;
         }
         return true;

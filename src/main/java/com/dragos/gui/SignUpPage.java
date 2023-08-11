@@ -1,8 +1,6 @@
 package com.dragos.gui;
 
 
-
-
 import com.dragos.sevices.AuthServicesImpl;
 import com.dragos.sevices.AuthServicesInterface;
 
@@ -31,7 +29,7 @@ public class SignUpPage extends JFrame implements ActionListener {
     JButton submitButton;
     String[] bankNames;
     JComboBox<String> comboBoxBank;
-    HashMap banksHashMap ;
+    HashMap banksHashMap;
 
     AuthServicesInterface signUp = new AuthServicesImpl();
 
@@ -40,7 +38,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         this.setLayout(null);
 
 
-        banksHashMap =  signUp.getBanks();
+        banksHashMap = signUp.getBanks();
 
         bankNames = (String[]) banksHashMap.keySet().toArray(new String[0]);
 
@@ -96,6 +94,12 @@ public class SignUpPage extends JFrame implements ActionListener {
         comboBoxBank.addActionListener(this);
         comboBoxBank.setBounds(245, 410, 180, 30);
 
+        passwordTF.setToolTipText("1.Password must contain at least one digit [0-9].\n" +
+                "2.Password must contain at least one lowercase Latin character [a-z].\n" +
+                "3.Password must contain at least one uppercase Latin character [A-Z].\n" +
+                "4.Password must contain at least one special character like ! @ # & ( ).\n" +
+                "5.Password must contain a length of at least 8 characters and a maximum of 20 characters.");
+
         this.add(emailTF);
         this.add(email);
         this.add(bank);
@@ -122,16 +126,16 @@ public class SignUpPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == submitButton) {
-            if ( firstNameTF.getText().isEmpty() || lastNameTF.getText().isEmpty() || emailTF.getText().toLowerCase().isEmpty() || passwordTF.getText().isBlank() || fundsTF.getText().isEmpty()) {
+            if (firstNameTF.getText().isEmpty() || lastNameTF.getText().isEmpty() || emailTF.getText().toLowerCase().isEmpty() || passwordTF.getText().isBlank() || fundsTF.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
             } else {
                 try {
-                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]),emailTF.getText().toLowerCase(), passwordTF.getText(),firstNameTF.getText(), lastNameTF.getText(), Double.parseDouble(fundsTF.getText()))) {
+                    if (signUp.signUp((Integer) banksHashMap.get(bankNames[comboBoxBank.getSelectedIndex()]), emailTF.getText().toLowerCase(), passwordTF.getText(), firstNameTF.getText(), lastNameTF.getText(), Double.parseDouble(fundsTF.getText()))) {
                         this.dispose();
                         new SignInPage();
                     }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "An error occurred please try again!");
+                    JOptionPane.showMessageDialog(this, "An error occurred please try again!");
                     throw new RuntimeException(ex);
                 }
             }
